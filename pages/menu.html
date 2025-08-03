@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>menu</title>
+    <link rel="stylesheet" href="../style/style.css">
+    <link rel="stylesheet" href="../style/style-2.css">
+    <link rel="icon" type="image/png" href="../logo.PNG">
+    <meta dir="rtl">
+    
+</head>
+<body id="menu">
+    <header>
+      <div id="div-cart">
+      <button onclick="openCart()" id="cart-icon" id="shopping-cart"><img src="../images/shopping_cart3.png" alt=""></button>
+
+    </div>
+    <div class="hamburger" id="hamburger">&#9776;</div>
+    <nav id="nav1">
+        <ul id="navMenu">   
+         <li> <a href="../pages/contact_us.html"> צרו קשר</a> </li>
+         <li> <a href="../pages/event.html">אירועי גלידה</a> </li> 
+         <li><a href="../pages/Franchisees.html">זכיינות</a></li>     
+         <li><a href="../index.html"><img src="../images/לוגו גלידה 3.PNG" alt="logo" class="logo"></a></li>
+         <li><a href="../pages/menu.html">תפריט</a></li>
+         <li><a href="../pages/Our-Branches.html">סניפים</a> </li>
+         <li><a href="../index.html">בית</a></li>  
+   
+
+      </ul>
+        </nav>
+      </header>
+<div id="menu_big">
+
+<div id="menu4" class="menu-box">
+  <img src="../images/פרישייק.jpg" alt="menu">
+  <p>פרישייק </p>
+   <p style="font-size: medium;"> 45 </p>
+  <button type="button" class="bt" onclick="openpanel('פרישייק')">הוספה לסל</button>
+</div>
+    
+  <div id="menu3" class="menu-box">
+    <img src="../images/פרוזן יוגורט.jpg" alt="menu">
+    <p>פרוזן יוגורט</p>
+     <p style="font-size: medium;"> 50 </p>
+    <button type="button" class="bt" onclick="openpanel('פרוזן יוגורט')">הוספה לסל</button>
+  </div>
+
+<div id="menu2" class="menu-box">
+  <img src="../images/menu2.jpg" alt="menu">
+  <p>גלידה טבעונית</p>
+   <p style="font-size: medium;"> 90 </p>
+  <button type="button" class="bt" onclick="openpanel('גלידה טבעונית')">הוספה לסל</button>
+</div>
+
+<div id="menu1" class="menu-box">
+  <img src="../images/menu1.jpg" alt="menu">
+  <p>גלידה חלבית</p>
+  <p style="font-size: medium;"> 120 </p>
+  <button type="button" class="bt" onclick="openpanel('גלידה חלבית')">הוספה לסל</button>
+</div>
+<div id="menu1" class="menu-box">
+  <img src="../images/קרפ-צרפתי-1024x1024.jpg" alt="menu">
+  <p>קרפ צרפתי </p>
+   <p style="font-size: medium;"> 60 </p>
+  <button type="button" class="bt" onclick="openpanel('קרפ צרפתי')">הוספה לסל</button>
+</div>
+<div id="menu6" class="menu-box">
+  <img src="../images/וופל-בלגי-1024x1024.jpg" alt="menu">
+  <p> וופל בלגי </p>
+   <p style="font-size: medium;"> 80 </p>
+  <button type="button" class="bt" onclick="openpanel('וופל בלגי')">הוספה לסל</button>
+</div>
+<div id="menu5" class="menu-box">
+  <img src="../images/553279c6f8f3380900b20ffdd405f04b.jpg" alt="menu">
+  <p>מילקשייק </p>
+   <p style="font-size: medium;"> 70 </p>
+  <button type="button" class="bt" onclick="openpanel('מילקשייק')">הוספה לסל</button>
+</div>
+
+
+</div>
+<div id="menu_panel">
+  
+  <button type="button" id="menu_panel_close" onclick="closepanel()">x</button>
+  <button onclick="handleAddToCart(currentProductName)">הוספה לעגלה</button>
+
+  <h2 id="panel-product-title" ></h2>
+<div id="menu_panel_buttons"></div>
+
+</div>
+<div id="cart-panel" class="cart-panel">
+  <h2>העגלה שלי</h2>
+  <ul id="cart-items"></ul>
+  <button onclick="closeCart()" class="remove-btn">סגור</button>
+  <button id="pay-button">לתשלום</button>
+
+</div>
+<div id="checkout-panel" class="hidden">
+  <button id="close-checkout" >✖</button>
+  <div id="checkout-items"></div>
+  <div id="checkout-total" ></div>
+  <button id="show-payment-form" >
+    הזנת פרטים למשלוח ותשלום
+  </button>
+
+  <form id="payment-form" class="hidden" >
+    <label>כתובת למשלוח:<br>
+      <input type="text" id="address" required >
+    </label><br><br>
+
+    <label>מספר כרטיס אשראי:<br>
+      <input type="text" id="credit-card" required maxlength="16" pattern="\d{16}" placeholder="16 ספרות" >
+    </label><br><br>
+   <label> 3 ספרות בגב הכרטיס:<br>
+      <input type="text" id="credit-card" required maxlength="3" pattern="\d{3}" placeholder="3 ספרות" >
+    </label><br><br>
+    <label>תוקף כרטיס:<br>
+      <input type="month" id="expiry-date" required >
+    </label><br><br>
+
+    <button type="submit" >
+      שלח הזמנה
+    </button>
+  </form>
+</div>
+
+<script src="../index.js"></script>
+    
+</body>
+</html>

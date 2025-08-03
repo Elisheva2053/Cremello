@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>ברכה מקרב הלב</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body {
+      direction: rtl;
+      text-align: center;
+      background-color: rgb(255, 251, 195);
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+
+    h1 {
+      font-size: 35px;
+      color: rgb(20, 18, 18);
+      margin-bottom: 8px;
+    }
+
+    input[type="text"],
+    textarea,
+    input[type="color"] {
+      font-size: 18px;
+      padding: 6px 10px;
+      width: 80%;
+      max-width: 400px;
+      margin-bottom: 20px;
+      border: 1px solid #aaa;
+      border-radius: 6px;
+      box-sizing: border-box;
+      direction: rtl;
+      text-align: right;
+      resize: vertical;
+    }
+
+    textarea {
+      height: 120px;
+    }
+
+    button {
+      font-size: 20px;
+      padding: 10px 25px;
+      cursor: pointer;
+      border: none;
+      border-radius: 8px;
+      background-color: #4caf50;
+      color: white;
+      transition: background-color 0.3s ease;
+      margin: 10px 5px;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    #print {
+      white-space: pre-line;
+      margin: 0 auto;
+      padding: 20px;
+      border: 2px solid black;
+      width: 90%;
+      max-width: 600px;
+      min-height: 300px;
+      font-size: 22px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      text-align: right;
+      direction: rtl;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      transition: background-image 0.5s ease;
+    }
+
+    .bg1 {
+      background-image: url('../images/blessing1.jpg');
+    }
+
+    .bg2 {
+      background-image: url('../images/blessing2.jpg');
+    }
+
+    .bg3 {
+      background-image: url('../images/blessing3.jpg');
+    }
+
+    .bg4 {
+      background-image: url('../images/blessing4.jpg');
+    }
+
+    .bg5 {
+      background-image: url('../images/blessing5.jpg');
+    }
+    
+    .background-options {
+      margin-bottom: 30px;
+    }
+  </style>
+</head>
+<body>
+  <header id="topheader">
+    <h1>שם הנמען</h1>
+    <input type="text" id="one" placeholder="הקלד/י את שם הנמען" />
+
+    <h1>ברכה</h1>
+    <textarea id="tow" placeholder="הקלד/י את הברכה"></textarea>
+
+    <h1>שם המברך</h1>
+    <input type="text" id="three" placeholder="הקלד/י את שמך" />
+
+    <h1>צבע הטקסט</h1>
+    <input type="color" id="four" value="#000000" />
+
+    <h1>צבע הרקע (לטקסט בלבד)</h1>
+    <input type="color" id="five" value="#ffffff" />
+  </header>
+
+  <h3>בחר רקע לברכה:</h3>
+  <div class="background-options">
+    <button type="button" onclick="setBackground('bg1')">רקע פרחים</button>
+    <button type="button" onclick="setBackground('bg2')">רקע שמיים</button>
+    <button type="button" onclick="setBackground('bg4')">רקע ורוד עם עיטורים צבעוניים 1</button>
+    <button type="button" onclick="setBackground('bg5')">רקע ורוד עם עיטורים צבעוניים 2</button>
+    <button type="button" onclick="clearBackground()">נקה רקע</button>
+  </div>
+
+  <button onclick="printGreeting()">הצג ברכה</button>
+
+  <main id="centerheader">
+    <div id="print"></div>
+  </main>
+
+  <script>
+    let selectedBgClass = "";
+
+    function setBackground(className) {
+      const printDiv = document.getElementById("print");
+
+      // הסר רקע קודם אם קיים
+      if (selectedBgClass) {
+        printDiv.classList.remove(selectedBgClass);
+      }
+
+      // הוסף רקע חדש
+      printDiv.classList.add(className);
+      selectedBgClass = className;
+
+      // אפס את צבע הרקע הצבוע (צבע הרקע הלבן)
+      printDiv.style.backgroundColor = "transparent";
+
+      // אפשר למנוע עריכת צבע הרקע הלבן אוטומטית אם רוצים
+      document.getElementById("five").value = "#ffffff";
+    }
+
+    function clearBackground() {
+      const printDiv = document.getElementById("print");
+
+      if (selectedBgClass) {
+        printDiv.classList.remove(selectedBgClass);
+        selectedBgClass = "";
+      }
+      printDiv.style.backgroundColor = document.getElementById("five").value || "white";
+    }
+
+    function printGreeting() {
+      const nameto = document.getElementById("one").value.trim();
+      const bracha = document.getElementById("tow").value.trim();
+      const from = document.getElementById("three").value.trim();
+      const color = document.getElementById("four").value;
+      const backgroundColorInput = document.getElementById("five").value;
+
+      if (!nameto || !bracha || !from) {
+        alert("אנא מלא/י את כל השדות: שם הנמען, הברכה ושם המברך.");
+        return;
+      }
+
+      const greeting = `לכבוד ${nameto}\nרציתי לומר את ברכותי החמות מקרב הלב ❤❤\n${bracha}\n\nבאהבה גדולה מכל ה-💕 ממני ${from}`;
+
+      const divPrint = document.getElementById("print");
+      divPrint.innerText = greeting;
+      divPrint.style.color = color;
+
+      // אם אין רקע רק עם מחלקת רקע, צבע הרקע יגיע מהצבע שנבחר (שקוף אם בחר רקע)
+      if (!selectedBgClass) {
+        divPrint.style.backgroundColor = backgroundColorInput;
+      } else {
+        divPrint.style.backgroundColor = "transparent";
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="UTF-8">
+  <title>הוספת ברכה</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      direction: rtl;
+      padding: 20px;
+      background-color: #f5f5f5;
+      margin: 0;
+    }
+
+    .greeting-section {
+      max-width: 600px;
+      margin: auto;
+    }
+
+    textarea {
+      width: 100%;
+      height: 100px;
+      font-size: 16px;
+      padding: 10px;
+      margin-bottom: 20px;
+      resize: none;
+    }
+
+    .background-options button {
+      margin: 5px;
+      padding: 10px 20px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    #greeting-preview {
+      width: 100%;
+      height: 200px;
+      border: 2px solid #ccc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      color: #000;
+      font-size: 18px;
+      font-weight: bold;
+      text-align: center;
+      background-size: cover;
+      background-position: center;
+      white-space: pre-wrap; /* שומר על ירידות שורה */
+    }
+
+    .bg1 {
+      background-image: url('../images/blessing1.jpg');
+    }
+
+    .bg2 {
+      background-image: url('../images/blessing2.jpg');
+    }
+
+    .bg3 {
+      background-image: url('../images/blessing3.jpg');
+    }
+        .bg4 {
+      background-image: url('../images/blessing4.jpg');
+    }
+    .bg5 {
+      background-image: url('../images/blessing5.jpg');
+    }
+
+
+    .hidden {
+      display: none;
+    }
+
+    .question {
+      text-align: right;
+      margin-bottom: 20px;
+    }
+
+    .panel-left {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 320px;
+      height: 100%;
+      background-color: #fff;
+      border-left: 4px solid #ccc;
+      box-shadow: 2px 0 8px rgba(0, 0, 0, 0.2);
+      padding: 20px;
+      overflow-y: auto;
+      transition: transform 0.3s ease-in-out;
+      transform: translateX(-100%);
+      z-index: 9999;
+    }
+
+    .panel-left.show {
+      transform: translateX(0);
+    }
+
+    label {
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+    }
+
+    input[type="checkbox"] {
+      margin-left: 10px;
+      transform: scale(1.2);
+    }
+  </style>
+</head>
+<body>
+  <div class="greeting-section">
+    <div class="question">
+      <label>
+        <input type="checkbox" id="toggle-greeting" />
+        אני רוצה להוסיף ברכה למשלוח
+      </label>
+    </div>
+  </div>
+
+  <!-- פאנל צד שמאל -->
+  <div id="greeting-panel" class="panel-left">
+    <h3>כתוב את הברכה שלך:</h3>
+    <textarea id="greeting-input" placeholder="כתוב כאן את הברכה שלך..."></textarea>
+
+    <h3>בחר רקע לברכה:</h3>
+    <div class="background-options">
+      <button onclick="setBackground('bg1')">רקע פרחים</button>
+      <button onclick="setBackground('bg2')">רקע שמיים</button>
+        <button onclick="setBackground('bg4')">רקע ורוד עם עיטורים צבעוניים</button>
+          <button onclick="setBackground('bg5')">רקע ורוד עם עיטורים צבעוניים</button>
+    </div>
+
+    <h3>תצוגה מקדימה:</h3>
+    <div id="greeting-preview" class="bg1">
+      <p id="preview-text">כאן תופיע הברכה שלך</p>
+    </div>
+  </div>
+
+  <script>
+    const toggleGreeting = document.getElementById('toggle-greeting');
+    const greetingPanel = document.getElementById('greeting-panel');
+    const input = document.getElementById('greeting-input');
+    const previewText = document.getElementById('preview-text');
+    const previewBox = document.getElementById('greeting-preview');
+
+    toggleGreeting.addEventListener('change', () => {
+      if (toggleGreeting.checked) {
+        greetingPanel.classList.add('show');
+      } else {
+        greetingPanel.classList.remove('show');
+      }
+    });
+
+    input.addEventListener('input', () => {
+      const text = input.value.trim() || "כאן תופיע הברכה שלך";
+      previewText.textContent = text;
+    });
+
+    function setBackground(bgClass) {
+      previewBox.className = '';
+      previewBox.classList.add(bgClass);
+    }
+  </script>
+</body>
+</html>
+
+
